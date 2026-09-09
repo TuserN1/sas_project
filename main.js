@@ -213,10 +213,9 @@ function main(n) {
             case 1:
                 show_trips();
                 prompt('press enter to go back to the main menu');
-                main()
             break;
             case 2:
-                
+                buy_teckets();
             break;
             case 3:
                 
@@ -251,12 +250,34 @@ function main(n) {
 // afficher les trajets
 
 function show_trips(){
+    console.log("=== TRAJETS DISPONIBLES ===")
     for(let i=0;i<trips.length;i++){
-       console.log(`=== TRAJETS DISPONIBLES === \n#${trips[i].id} ${trips[i].departure} → ${trips[i].destination} \nDépart : ${trips[i].departureTime} \nArrivée : ${trips[i].arrivalTime} \nPrix : ${trips[i].price} DH\nPlaces disponibles : ${trips[i].availableSeats} \n`)
+       console.log(`---------------------------\n#${trips[i].id} ${trips[i].departure} → ${trips[i].destination} \nDépart : ${trips[i].departureTime} \nArrivée : ${trips[i].arrivalTime} \nPrix : ${trips[i].price} DH\nPlaces disponibles : ${trips[i].availableSeats} \n`)
        
     }
  
 
 
 
-}0
+}
+
+
+// buy teckets
+
+
+function buy_teckets(){
+    let name=prompt("Nom du passager : ")
+    let tripid=prompt("Identifiant du trajet :")
+    let tripcheck=
+    if (name!==""||tripid===0){
+
+
+    }
+
+
+}
+
+// Afficher les tickets
+function chow_teckets(){
+    
+}
