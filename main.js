@@ -281,13 +281,13 @@ function buy_teckets(){
     const tripcheck=trips.find(trip => trip.id ===tripid);
     
      
-        if (tripcheck!==0){
+        if (tripcheck!==0&&tripid<(trips.length-1)){
             if (tripcheck.availableSeats>0){
                  console.log(`\n-----------------------------------\npour le trajet de ${tripcheck.departure} -> ${tripcheck.destination} il rest : ${tripcheck.availableSeats} place\n`)
                 do{               
                 console.log("1. Acheter un billet")
                 console.log("2. Acheter plusieur billets")
-                console.log("3. Retourner au menu principal")
+                console.log("0. Retourner au menu principal")
                 x = Number(prompt("votre choix :  "))
 
             
@@ -303,8 +303,7 @@ function buy_teckets(){
                             price: `${tripcheck.price}DH`
                         })
                         trips[(tripid-1)].availableSeats-=1
-                        console.log(tickets)
-                        console.log(trips[tripid-1])
+                        console.log(`Ticket acheté avec succès.\n Ticket #${tickets.length+1}\nPassager : ${name}\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\nPlace : ${50-tripcheck.availableSeats+1}\nPrix : ${tripcheck.price}DH`)
                         break;
                     case  2:
                         x= Number (prompt("combien de ticket:  "))
@@ -316,17 +315,17 @@ function buy_teckets(){
                                     tripId: tripid,
                                     seatNumber: (50-tripcheck.availableSeats+1),
                                     price: `${tripcheck.price}DH`
+                                    
                                 })
                                 trips[(tripid-1)].availableSeats-=1
-                                
+                                console.log(`+++++++++++++++++++++++++\nTicket acheté avec succès.\n+++++++++++++++++++++++++\nTicket #${tickets.length}\n--------------------\nPassager : ${name}\n--------------------\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\n--------------------\nPlace : ${50-tripcheck.availableSeats+1}\n--------------------\nPrix : ${tripcheck.price}DH\n--------------------\n`)
 
                                }
 
                             }console.log("Cela dépasse ce qui est disponible.")
-                            console.log(tickets)
-                            console.log(trips[tripid-1])
+                            
                         break;
-                    case 3 :
+                    case 0 :
                         break;
                     default:
                         console.log("votre choix n'exist pas !")
@@ -337,10 +336,11 @@ function buy_teckets(){
                 
              
                 
-                }while(x!==3)
+                }while(x!==0)
                 
-            }
-        }else console.log("se trajet n'existe pas");
+            }else console.log("train complet")
+        }else{ console.log("se trajet n'existe pas");
+        prompt('press enter to go back to the main menu');}
 
     
     
