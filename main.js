@@ -275,6 +275,7 @@ function buy_teckets(){
     price:0
 }
 
+
     let x;
     let name =prompt("Nom du passager : ")
     let tripid=Number(prompt("Identifiant du trajet :"))
@@ -315,7 +316,7 @@ function buy_teckets(){
                                     passengerName: name,
                                     tripId: tripid,
                                     seatNumber: (50-tripcheck.availableSeats+1),
-                                    price: `${tripcheck.price}DH`
+                                    price: tripcheck.price
                                     
                                 })
                                 trips[(tripid-1)].availableSeats-=1
@@ -361,11 +362,18 @@ function buy_teckets(){
 // // Afficher les tickets
 function chow_teckets(){
     console.log("=== TICKETS ===\n")
+<<<<<<< HEAD
     if(tickets.length>0){
         
         
         for (let i =0;i<tickets.length;i++){
             let ticket=tickets[i]
+=======
+     if(tickets.length>0){
+       
+        for (let i =0;i<tickets.length;i++){
+             let ticket=tickets[i]
+>>>>>>> temp-branch
             const tripcheck=trips.find(trip => trip.id ===ticket.tripId);
             console.log(`Ticket #${ticket.id}\n--------------------\nPassager : ${ticket.passengerName}\n--------------------\nTrajet : ${tripcheck.departure}→${tripcheck.destination} \n--------------------\nPlace : ${ticket.seatNumber}\n--------------------\nPrix :  ${ticket.price}DH`)
 
@@ -373,7 +381,7 @@ function chow_teckets(){
 
         }
 
-    }else{console.log ("Il n'y a pas encore de billets.")
+     }else{console.log ("Il n'y a pas encore de billets.")
         prompt('press enter to go back to the main menu');
         
     }
