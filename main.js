@@ -304,8 +304,7 @@ function buy_teckets(){
                         })
                         trips[(tripid-1)].availableSeats-=1
                         console.log(`Ticket acheté avec succès.\n Ticket #${tickets.length+1}\nPassager : ${name}\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\nPlace : ${50-tripcheck.availableSeats+1}\nPrix : ${tripcheck.price}DH`)
-                        prompt('press enter to go back to the main menu');
-                        main()
+                        
                         break;
                     case  2:
                         x= Number (prompt("combien de ticket:  "))
@@ -326,8 +325,8 @@ function buy_teckets(){
 
                             }else {console.log("Cela dépasse ce qui est disponible.")}
                             
-                            prompt('press enter to go back to the main menu');
-                            main()
+                           
+                            
                         break;
                     case 0 :
                         break;
@@ -383,7 +382,13 @@ function chow_teckets(){
 
 // anuuler le ticket
 function cancelticket(){
-    let x=Number(prompt("entrerl'identifiant de vote ticket:  "))
+    if(tickets.length>0){
+        let x=Number(prompt("entrerl'identifiant de vote ticket:  "))
+        if (tickets[x]){}
+
+
+    }console.log("Il n'y a pas encore de billets.")
+
 
 
 
