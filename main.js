@@ -222,7 +222,7 @@ function main() {
                 chow_teckets()
             break;
             case 4:
-                
+                cancelticket()
             break;
             case 5:
                 
@@ -304,6 +304,8 @@ function buy_teckets(){
                         })
                         trips[(tripid-1)].availableSeats-=1
                         console.log(`Ticket acheté avec succès.\n Ticket #${tickets.length+1}\nPassager : ${name}\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\nPlace : ${50-tripcheck.availableSeats+1}\nPrix : ${tripcheck.price}DH`)
+                        prompt('press enter to go back to the main menu');
+                        main()
                         break;
                     case  2:
                         x= Number (prompt("combien de ticket:  "))
@@ -322,8 +324,10 @@ function buy_teckets(){
 
                                }
 
-                            }console.log("Cela dépasse ce qui est disponible.")
+                            }else {console.log("Cela dépasse ce qui est disponible.")}
                             
+                            prompt('press enter to go back to the main menu');
+                            main()
                         break;
                     case 0 :
                         break;
@@ -357,6 +361,29 @@ function buy_teckets(){
 
 // // Afficher les tickets
 function chow_teckets(){
+    console.log("=== TICKETS ===\n")
+    if(tickets.length>0){
+        let ticket=ticket[i]
+        const tripcheck=trips.find(trip => trip.id ===ticket.tripId);
+        for (let i =0;i<tickets.length;i++){
+            console.log(`Ticket #${ticket.id}\n--------------------\nPassager : ${ticket.passengerName}\n--------------------\nTrajet : ${tripcheck.departure}→${tripcheck.destination} \n--------------------\nPlace : ${ticket.seatNumber}\n--------------------\nPrix :  ${ticket.price}DH`)
+
+
+
+        }
+
+    }else{console.log ("Il n'y a pas encore de billets.")
+        prompt('press enter to go back to the main menu');
+        
+    }
+
+
+}
+
+
+// anuuler le ticket
+function cancelticket(){
+    let x=Number(prompt("entrerl'identifiant de vote ticket:  "))
 
 
 
