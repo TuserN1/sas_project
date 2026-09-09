@@ -362,9 +362,11 @@ function buy_teckets(){
 function chow_teckets(){
     console.log("=== TICKETS ===\n")
     if(tickets.length>0){
-        let ticket=ticket[i]
-        const tripcheck=trips.find(trip => trip.id ===ticket.tripId);
+        
+        
         for (let i =0;i<tickets.length;i++){
+            let ticket=tickets[i]
+            const tripcheck=trips.find(trip => trip.id ===ticket.tripId);
             console.log(`Ticket #${ticket.id}\n--------------------\nPassager : ${ticket.passengerName}\n--------------------\nTrajet : ${tripcheck.departure}→${tripcheck.destination} \n--------------------\nPlace : ${ticket.seatNumber}\n--------------------\nPrix :  ${ticket.price}DH`)
 
 
@@ -387,8 +389,16 @@ function cancel_ticket(){
         let x=Number(prompt("entrer l'identifiant de vote ticket:  "))
         if (x<(tickets.length)){
             const ticket=tickets[x]
-            const tripcheck=trips.find(trip => trip.id ===ticket.tripId)
             
+            if (ticket!==0){
+                trips[ticket.tripId-1].availableSeats+=+1;
+                tickets.splice((x-1,1))
+
+                
+
+
+            }console.log("Aucun billet n'est associé à cet identifiant. ")
+
 
 
         }console.log("Aucun billet n'est associé à cet identifiant. ")
