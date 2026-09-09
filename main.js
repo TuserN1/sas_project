@@ -186,7 +186,11 @@ let prompt = require(`prompt-sync`)();
 
 let n;
 
-function main() {
+main()
+
+
+
+function main(n) {
     
     do {
         console.log("=================================")
@@ -203,24 +207,26 @@ function main() {
         console.log("0. Quitter")
         console.log("")
     
-        n = prompt('Votre choix :');
+        n = Number(prompt('Votre choix :'));
 
         switch (n) {
             case 1:
-                show_trips(trips)
-                break;
+                show_trips();
+                prompt('press enter to go back to the main menu');
+                main()
+            break;
             case 2:
                 
-                break;
+            break;
             case 3:
                 
-                break;
+            break;
             case 4:
                 
-                break;
+            break;
             case 5:
                 
-                break;
+            break;
             case 6:
                 
             break;
@@ -228,28 +234,29 @@ function main() {
             
             break;
             case 0:
-                console.log("END")
-                break;
-        
+                console.log("END");
+            break;
             default:
-                console.log("Votre reposne n'etait pas acceptable, Svp donne moi une valeur entre 1 et 6");
-                break;
+                console.log("you choix is not available please enter a number between 1 and 7 or 0 to exit");
+                prompt('press enter to go back to the main menu');
+            break;
         }
     } while (n!=0)
 }
 
-main()
+
 
 
 
 // afficher les trajets
 
-function show_trips(trips){
+function show_trips(){
     for(let i=0;i<trips.length;i++){
-        return console.log(`=== TRAJETS DISPONIBLES === \n#${trips[i][0]} ${trips[i][1]} → ${trips[i][2]} \nDépart : ${trips[i][3]} \nArrivée : ${trips[i][4]} \nPrix : ${trips[i][5]} DH\nPlaces disponibles : ${trips[i][6]} \n`)
+       console.log(`=== TRAJETS DISPONIBLES === \n#${trips[i].id} ${trips[i].departure} → ${trips[i].destination} \nDépart : ${trips[i].departureTime} \nArrivée : ${trips[i].arrivalTime} \nPrix : ${trips[i].price} DH\nPlaces disponibles : ${trips[i].availableSeats} \n`)
+       
     }
  
 
 
 
-}
+}0
