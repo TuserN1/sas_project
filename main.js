@@ -222,7 +222,7 @@ function main() {
                 chow_teckets()
             break;
             case 4:
-                cancelticket()
+                cancel_ticket()
             break;
             case 5:
                 
@@ -381,10 +381,17 @@ function chow_teckets(){
 
 
 // anuuler le ticket
-function cancelticket(){
+function cancel_ticket(){
+    
     if(tickets.length>0){
-        let x=Number(prompt("entrerl'identifiant de vote ticket:  "))
-        if (tickets[x]){}
+        let x=Number(prompt("entrer l'identifiant de vote ticket:  "))
+        if (x<(tickets.length)){
+            const ticket=tickets[x]
+            const tripcheck=trips.find(trip => trip.id ===ticket.tripId)
+            
+
+
+        }console.log("Aucun billet n'est associé à cet identifiant. ")
 
 
     }console.log("Il n'y a pas encore de billets.")
@@ -392,4 +399,4 @@ function cancelticket(){
 
 
 
-}
+} 
