@@ -219,7 +219,7 @@ function main() {
                 buy_teckets();
             break;
             case 3:
-                
+                chow_teckets()
             break;
             case 4:
                 
@@ -267,8 +267,16 @@ function show_trips(){
 
 
 function buy_teckets(){
+    let ticket={
+    id: 0,
+    passengerName:"",
+    tripId: 0,
+    seatNumber: 0,
+    price:0
+}
+
     let x;
-    let name=prompt("Nom du passager : ")
+    let name =prompt("Nom du passager : ")
     let tripid=Number(prompt("Identifiant du trajet :"))
     const tripcheck=trips.find(trip => trip.id ===tripid);
     
@@ -282,11 +290,41 @@ function buy_teckets(){
                 console.log("3. Retourner au menu principal")
                 x = Number(prompt("votre choix :  "))
 
+            
+                
+
                 switch (x) {
                     case 1 :
-                        
+                        tickets.push({
+                            id: tickets.length+1,
+                            passengerName: name,
+                            tripId: tripid,
+                            seatNumber: (50-tripcheck.availableSeats+1),
+                            price: `${tripcheck.price}DH`
+                        })
+                        trips[(tripid-1)].availableSeats-=1
+                        console.log(tickets)
+                        console.log(trips[tripid-1])
                         break;
                     case  2:
+                        x= Number (prompt("combien de ticket:  "))
+                            if(x<tripcheck.availableSeats){
+                               for(i=0;i<x;i++){
+                                tickets.push({
+                                    id: tickets.length+1,
+                                    passengerName: name,
+                                    tripId: tripid,
+                                    seatNumber: (50-tripcheck.availableSeats+1),
+                                    price: `${tripcheck.price}DH`
+                                })
+                                trips[(tripid-1)].availableSeats-=1
+                                
+
+                               }
+
+                            }console.log("Cela dépasse ce qui est disponible.")
+                            console.log(tickets)
+                            console.log(trips[tripid-1])
                         break;
                     case 3 :
                         break;
@@ -318,6 +356,8 @@ function buy_teckets(){
 
 
 // // Afficher les tickets
-// function chow_teckets(){
+function chow_teckets(){
 
-// }
+
+
+}
