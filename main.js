@@ -181,18 +181,75 @@ const trips = [
     }
 ];
 
-console.log("=================================")
-console.log("        RAILWAY MANAGER")
-console.log("=================================")
-console.log("\n")
-console.log("1. Afficher les trajets")
-console.log("2. Acheter un ticket")
-console.log("3. Afficher les tickets")
-console.log("4. Annuler un ticket")
-console.log("5. Rechercher un ticket")
-console.log("6. Filtrer les trajets")
-console.log("7. Trier les trajets")
-console.log("0. Quitter")
-console.log("")
+
 let prompt = require(`prompt-sync`)();
-let n = prompt('How many more times? ');
+
+let n;
+
+function main() {
+    
+    do {
+        console.log("=================================")
+        console.log("        RAILWAY MANAGER")
+        console.log("=================================")
+        console.log("\n")
+        console.log("1. Afficher les trajets")
+        console.log("2. Acheter un ticket")
+        console.log("3. Afficher les tickets")
+        console.log("4. Annuler un ticket")
+        console.log("5. Rechercher un ticket")
+        console.log("6. Filtrer les trajets")
+        console.log("7. Trier les trajets")
+        console.log("0. Quitter")
+        console.log("")
+    
+        n = prompt('Votre choix :');
+
+        switch (n) {
+            case 1:
+                show_trips(trips)
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 5:
+                
+                break;
+            case 6:
+                
+            break;
+            case 7: 
+            
+            break;
+            case 0:
+                console.log("END")
+                break;
+        
+            default:
+                console.log("Votre reposne n'etait pas acceptable, Svp donne moi une valeur entre 1 et 6");
+                break;
+        }
+    } while (n!=0)
+}
+
+main()
+
+
+
+// afficher les trajets
+
+function show_trips(trips){
+    for(let i=0;i<trips.length;i++){
+        return console.log(`=== TRAJETS DISPONIBLES === \n#${trips[i][0]} ${trips[i][1]} → ${trips[i][2]} \nDépart : ${trips[i][3]} \nArrivée : ${trips[i][4]} \nPrix : ${trips[i][5]} DH\nPlaces disponibles : ${trips[i][6]} \n`)
+    }
+ 
+
+
+
+}
