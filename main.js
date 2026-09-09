@@ -184,14 +184,15 @@ const trips = [
 
 let prompt = require(`prompt-sync`)();
 
-let n;
+
+let tickets=[];
 
 main()
 
 
 
-function main(n) {
-    
+function main() {
+    let n;
     do {
         console.log("=================================")
         console.log("        RAILWAY MANAGER")
@@ -262,22 +263,61 @@ function show_trips(){
 }
 
 
-// buy teckets
+// buy tickets
 
 
 function buy_teckets(){
+    let x;
     let name=prompt("Nom du passager : ")
-    let tripid=prompt("Identifiant du trajet :")
-    let tripcheck=
-    if (name!==""||tripid===0){
-
-
-    }
-
-
-}
-
-// Afficher les tickets
-function chow_teckets(){
+    let tripid=Number(prompt("Identifiant du trajet :"))
+    const tripcheck=trips.find(trip => trip.id ===tripid);
     
+     
+        if (tripcheck!==0){
+            if (tripcheck.availableSeats>0){
+                 console.log(`\n-----------------------------------\npour le trajet de ${tripcheck.departure} -> ${tripcheck.destination} il rest : ${tripcheck.availableSeats} place\n`)
+                do{               
+                console.log("1. Acheter un billet")
+                console.log("2. Acheter plusieur billets")
+                console.log("3. Retourner au menu principal")
+                x = Number(prompt("votre choix :  "))
+
+                switch (x) {
+                    case 1 :
+                        
+                        break;
+                    case  2:
+                        break;
+                    case 3 :
+                        break;
+                    default:
+                        console.log("votre choix n'exist pas !")
+                        break;
+
+
+                }
+                
+             
+                
+                }while(x!==3)
+                
+            }
+        }else console.log("se trajet n'existe pas");
+
+    
+    
+    
+    
+    
+   
+    
+
+
 }
+
+
+
+// // Afficher les tickets
+// function chow_teckets(){
+
+// }
