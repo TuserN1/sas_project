@@ -506,21 +506,28 @@ for (let i=0;i<sorting_trips.length-1;i++){
 
 }
 
- console.log("1.Trier par ordre croissant")
+        console.log("1.Trier par ordre croissant")
         console.log("2.Trier par ordre croissant")
         console.log("0.revenir au menu principal.")
         const x=Number(prompt("Votre choix : "))
         switch (x){
             case 1:
-                
+                for (let i=0;i<sorting_trips.length;i++){
+                    console.log(`${sorting_trips[i].departure} → ${sorting_trips[i].destination} : ${sorting_trips[i].price} DH\n-------------------`)
+                }
+                prompt("Appuyez sur Entrée pour revenir au menu principal.");
             break;
             case 2:
+                for (let i=sorting_trips.length-1;i>=0;i--){
+                    console.log(`${sorting_trips[i].departure} → ${sorting_trips[i].destination} : ${sorting_trips[i].price} DH\n-------------------`)
+                }
+                prompt("Appuyez sur Entrée pour revenir au menu principal.");
             break;
             case 0:
-                 prompt("Appuyez sur Entrée pour revenir au menu principal.");
             break;
             default:
                 console.log("Cette option n'est pas disponible.")
+                prompt("Appuyez sur Entrée pour revenir au menu principal.");
             break;
         }
 
