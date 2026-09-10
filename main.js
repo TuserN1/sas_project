@@ -213,7 +213,7 @@ function main() {
         switch (n) {
             case 1:
                 show_trips();
-                prompt('press enter to go back to the main menu');
+                prompt('Appuyez sur Entrée pour revenir au menu principal.');
             break;
             case 2:
                 buy_teckets();
@@ -231,14 +231,14 @@ function main() {
                 filtering_tickets()
             break;
             case 7: 
-            
+                trajet_sorting()
             break;
             case 0:
                 console.log("END");
             break;
             default:
                 console.log("you choix is not available please enter a number between 1 and 7 or 0 to exit");
-                prompt('press enter to go back to the main menu');
+                prompt('Appuyez sur Entrée pour revenir au menu principal.');
             break;
         }
     } while (n!=0)
@@ -344,7 +344,7 @@ function buy_teckets(){
                 
             }else console.log("train complet")
         }else{ console.log("se trajet n'existe pas");
-        prompt('press enter to go back to the main menu');}
+        prompt('Appuyez sur Entrée pour revenir au menu principal.');}
 
     
     
@@ -372,11 +372,11 @@ function chow_teckets(){
 
 
         }
-        prompt('press enter to go back to the main menu');
+        prompt('Appuyez sur Entrée pour revenir au menu principal.');
 
     }else{console.log ("Il n'y a pas encore de billets.")
         
-        prompt('press enter to go back to the main menu');
+        prompt('Appuyez sur Entrée pour revenir au menu principal.');
         
         }
         
@@ -467,13 +467,63 @@ Prix : ${foundtickets[i].price} DH\n
 // filtering tickets by depating city
 function filtering_tickets(){
     const depart=prompt("Ville de départ :")
+    let count = 0;
+    console.log("------Résultat------\n")
     for (let i=0;i<trips.length;i++){
-        if(depart===trips[i].departure){
-            console.log(`Résultat :\n
-${trips[i].departure} → ${trips[i].destination} : ${trips[i].price}\n-------------------------\n`)
-
+        
+        if(depart==trips[i].departure){
+            console.log(` ${trips[i].departure} → ${trips[i].destination} : ${trips[i].price} DH\n-------------------------\n`)
+            count+=1
         }
 
     }
-console.log(tripstart)
+        if(count==0){
+            console.log("Il n'y a aucun voyage qui part de cette ville.")
+        }
+
+     prompt("Appuyez sur Entrée pour revenir au menu principal.");
+}
+
+
+// Trier les trajets
+
+
+function trajet_sorting(){
+    let sorting_trips =[...trips];
+for (let i=0;i<sorting_trips.length-1;i++){
+    for(let j=0;j<sorting_trips.length-i-1;j++){
+        if(sorting_trips[j].price>sorting_trips[j+1].price) {
+            let temp=sorting_trips[j]
+            sorting_trips[j]=sorting_trips[j+1]
+            sorting_trips[j+1]=temp
+        }
+
+       
+
+    }
+
+    
+
+}
+
+ console.log("1.Trier par ordre croissant")
+        console.log("2.Trier par ordre croissant")
+        console.log("0.revenir au menu principal.")
+        const x=Number(prompt("Votre choix : "))
+        switch (x){
+            case 1:
+                
+            break;
+            case 2:
+            break;
+            case 0:
+                 prompt("Appuyez sur Entrée pour revenir au menu principal.");
+            break;
+            default:
+                console.log("Cette option n'est pas disponible.")
+            break;
+        }
+
+
+
 }
