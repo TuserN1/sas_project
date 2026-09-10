@@ -186,6 +186,7 @@ let prompt = require(`prompt-sync`)();
 
 
 let tickets=[];
+let ticket_count=0;
 
 main()
 
@@ -279,10 +280,10 @@ function buy_teckets(){
     let x;
     let name =prompt("Nom du passager : ")
     let tripid=Number(prompt("Identifiant du trajet :"))
-    const tripcheck=trips.find(trip => trip.id ===tripid);
+    const tripcheck=trips.find(trip => trip.id ===tripid);//this also alow yoou to get the trip that has the same id that the user gives"tripid"
     
      
-        if (tripcheck!==0&&tripid<(trips.length-1)){
+        if (tripcheck!==0){
             if (tripcheck.availableSeats>0){
                  console.log(`\n-----------------------------------\npour le trajet de ${tripcheck.departure} -> ${tripcheck.destination} il rest : ${tripcheck.availableSeats} place\n`)
                 do{               
@@ -296,8 +297,10 @@ function buy_teckets(){
 
                 switch (x) {
                     case 1 :
+                    
+                        ticket_count++;
                         tickets.push({
-                            id: tickets.length+1,
+                            id: ticket_count,
                             passengerName: name,
                             tripId: tripid,
                             seatNumber: (50-tripcheck.availableSeats+1),
@@ -311,8 +314,9 @@ function buy_teckets(){
                         x= Number (prompt("combien de ticket:  "))
                             if(x<tripcheck.availableSeats+1&&x>0){
                                for(i=0;i<x;i++){
+                                    ticket_count++
                                 tickets.push({
-                                    id: tickets.length+1,
+                                    id: ticket_count,
                                     passengerName: name,
                                     tripId: tripid,
                                     seatNumber: (50-tripcheck.availableSeats+1),
@@ -366,7 +370,7 @@ function chow_teckets(){
        
         for (let i =0;i<tickets.length;i++){
              let ticket=tickets[i]
-            const tripcheck=trips.find(trip => trip.id ===ticket.tripId);
+            const tripcheck=trips.find(trip => trip.id ===ticket.tripId); // to take the info from the trip directly
             console.log(`Ticket #${ticket.id}\n--------------------\nPassager : ${ticket.passengerName}\n--------------------\nTrajet : ${tripcheck.departure}→${tripcheck.destination} \n--------------------\nPlace : ${ticket.seatNumber}\n--------------------\nPrix :  ${ticket.price}DH\n=======================\n`)
 
 
@@ -530,6 +534,39 @@ for (let i=0;i<sorting_trips.length-1;i++){
                 prompt("Appuyez sur Entrée pour revenir au menu principal.");
             break;
         }
+
+
+
+}
+
+// Statistiques
+
+
+function statistique(){
+
+
+
+}
+
+
+// Nombre total de tickets vendus
+function selled_tickets(){
+
+
+
+}
+// Chiffre d'affaires total
+function Revenue(){
+
+
+
+
+}
+
+
+// Trajet le plus vendu
+function most_used_trajet(){
+
 
 
 
