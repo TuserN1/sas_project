@@ -228,7 +228,7 @@ function main() {
                 search_ticket()
             break;
             case 6:
-                
+                filtering_tickets()
             break;
             case 7: 
             
@@ -462,4 +462,23 @@ Prix : ${foundtickets[i].price} DH\n
             console.log("Il n'y a pas encore de billets.")
    }
 
+}
+
+// filtering tickets by depating city
+function filtering_tickets(){
+    let tripstart=[];
+    tripstart.push(trips[0].departure)
+    for(let i=0;i<trips.length;i++){
+        for (let j=0;j<tripstart.length;j++){
+            if (trips[i].departure!==tripstart[j].departure){
+                 tripstart.push(trips[i].departure)
+
+            }
+               
+        }
+
+
+    }
+
+console.log(tripstart)
 }
