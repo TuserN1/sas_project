@@ -466,19 +466,14 @@ Prix : ${foundtickets[i].price} DH\n
 
 // filtering tickets by depating city
 function filtering_tickets(){
-    let tripstart=[];
-    tripstart.push(trips[0].departure)
-    for(let i=0;i<trips.length;i++){
-        for (let j=0;j<tripstart.length;j++){
-            if (trips[i].departure!==tripstart[j].departure){
-                 tripstart.push(trips[i].departure)
+    const depart=prompt("Ville de départ :")
+    for (let i=0;i<trips.length;i++){
+        if(depart===trips[i].departure){
+            console.log(`Résultat :\n
+${trips[i].departure} → ${trips[i].destination} : ${trips[i].price}\n-------------------------\n`)
 
-            }
-               
         }
 
-
     }
-
 console.log(tripstart)
 }
