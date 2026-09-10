@@ -304,12 +304,12 @@ function buy_teckets(){
                             price: `${tripcheck.price}DH`
                         })
                         trips[(tripid-1)].availableSeats-=1
-                        console.log(`Ticket acheté avec succès.\n Ticket #${tickets.length+1}\nPassager : ${name}\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\nPlace : ${50-tripcheck.availableSeats+1}\nPrix : ${tripcheck.price}DH`)
+                        console.log(`Ticket acheté avec succès.\n Ticket #${tickets.length+1}\nPassager : ${name}\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\nPlace : ${50-tripcheck.availableSeats}\nPrix : ${tripcheck.price}DH`)
                         
                         break;
                     case  2:
                         x= Number (prompt("combien de ticket:  "))
-                            if(x<tripcheck.availableSeats){
+                            if(x<tripcheck.availableSeats+1&&x>0){
                                for(i=0;i<x;i++){
                                 tickets.push({
                                     id: tickets.length+1,
@@ -320,7 +320,7 @@ function buy_teckets(){
                                     
                                 })
                                 trips[(tripid-1)].availableSeats-=1
-                                console.log(`+++++++++++++++++++++++++\nTicket acheté avec succès.\n+++++++++++++++++++++++++\nTicket #${tickets.length}\n--------------------\nPassager : ${name}\n--------------------\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\n--------------------\nPlace : ${50-tripcheck.availableSeats+1}\n--------------------\nPrix : ${tripcheck.price}DH\n--------------------\n`)
+                                console.log(`+++++++++++++++++++++++++\nTicket acheté avec succès.\n+++++++++++++++++++++++++\nTicket #${tickets.length}\n--------------------\nPassager : ${name}\n--------------------\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\n--------------------\nPlace : ${50-tripcheck.availableSeats}\n--------------------\nPrix : ${tripcheck.price}DH\n--------------------\n`)
 
                                }
 
@@ -362,29 +362,24 @@ function buy_teckets(){
 // // Afficher les tickets
 function chow_teckets(){
     console.log("=== TICKETS ===\n")
-<<<<<<< HEAD
     if(tickets.length>0){
-        
-        
-        for (let i =0;i<tickets.length;i++){
-            let ticket=tickets[i]
-=======
-     if(tickets.length>0){
        
         for (let i =0;i<tickets.length;i++){
              let ticket=tickets[i]
->>>>>>> temp-branch
             const tripcheck=trips.find(trip => trip.id ===ticket.tripId);
-            console.log(`Ticket #${ticket.id}\n--------------------\nPassager : ${ticket.passengerName}\n--------------------\nTrajet : ${tripcheck.departure}→${tripcheck.destination} \n--------------------\nPlace : ${ticket.seatNumber}\n--------------------\nPrix :  ${ticket.price}DH`)
+            console.log(`Ticket #${ticket.id}\n--------------------\nPassager : ${ticket.passengerName}\n--------------------\nTrajet : ${tripcheck.departure}→${tripcheck.destination} \n--------------------\nPlace : ${ticket.seatNumber}\n--------------------\nPrix :  ${ticket.price}DH\n=======================\n`)
 
 
 
         }
+        prompt('press enter to go back to the main menu');
 
-     }else{console.log ("Il n'y a pas encore de billets.")
+    }else{console.log ("Il n'y a pas encore de billets.")
+        
         prompt('press enter to go back to the main menu');
         
-    }
+        }
+        
 
 
 }
@@ -396,23 +391,32 @@ function cancel_ticket(){
     if(tickets.length>0){
         let x=Number(prompt("entrer l'identifiant de vote ticket:  "))
         if (x<(tickets.length)){
-            const ticket=tickets[x]
+            let ticket ;
+            for (let i=0;i<tickets.length;i++){
+                if(x===tickets[i].id){
+                    ticket=tickets[i]
+
+
+                }
+
+
+            }
             
-            if (ticket!==0){
+            if (ticket !==0){
                 trips[ticket.tripId-1].availableSeats+=+1;
                 tickets.splice((x-1,1))
 
                 
 
 
-            }console.log("Aucun billet n'est associé à cet identifiant. ")
+            }else {console.log("Ticket introuvable.")}
 
 
 
-        }console.log("Aucun billet n'est associé à cet identifiant. ")
+        }else{console.log("Ticket introuvable.")}
 
 
-    }console.log("Il n'y a pas encore de billets.")
+    }else{console.log("Il n'y a pas encore de billets.")}
 
 
 
