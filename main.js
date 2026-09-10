@@ -225,7 +225,7 @@ function main() {
                 cancel_ticket()
             break;
             case 5:
-                
+                search_ticket()
             break;
             case 6:
                 
@@ -422,3 +422,44 @@ function cancel_ticket(){
 
 
 } 
+
+
+
+
+// search for tickets by name 
+function search_ticket(){
+   if (tickets.length!==0){
+        const foundtickets=[];
+        const name = prompt("Nom du passager :")
+        for(i=0;i<tickets.length;i++){
+            if (name===tickets[i].passengerName){
+
+                foundtickets.push(tickets[i])
+
+
+
+            }
+        
+        
+            
+        }
+        for (let i=0;i<foundtickets.length;i++){
+            const trip=trips.find(tick=>tick.id===foundtickets[i].tripId)
+            console.log(`===========================\n
+                Ticket # ${foundtickets[i].id}\n
+Passager : ${foundtickets[i].passengerName} \n
+Trajet : ${trip.departure} → ${trip.destination}\n
+Place : ${foundtickets[i].seatNumber}\n
+Prix : ${foundtickets[i].price} DH\n
+`)
+
+
+
+        }
+
+        
+    }else{
+            console.log("Il n'y a pas encore de billets.")
+   }
+
+}
