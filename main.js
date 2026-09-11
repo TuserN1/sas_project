@@ -209,9 +209,14 @@ function main() {
         console.log("0. Quitter")
         console.log("")
     
-        n = Number(prompt('Votre choix :'));
-
+        n = (prompt('Votre choix :').trim());
+        if (n===""){
+            console.log("votre choix est unvalide")
+            prompt('Appuyez sur Entrée pour revenir au menu principal.');
+            main()
+        }else{n=Number(n)}
         switch (n) {
+                     
             case 1:
                 show_trips();
                 prompt('Appuyez sur Entrée pour revenir au menu principal.');
@@ -279,76 +284,108 @@ function buy_teckets(){
 
     let x;
     let name =prompt("Nom du passager : ")
-    let tripid=Number(prompt("Identifiant du trajet :"))
-    const tripcheck=trips.find(trip => trip.id ===tripid);//this also alow yoou to get the trip that has the same id that the user gives"tripid"
+    let name_fillter=name.toLowerCase().trim();
+    let filter_check=0;
+    let filter_id=0
+
+    let alpha=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"," "];
+    let nums=["0","1","2","3","4","5","6","7","8","9",]
     
-     
-        if (tripcheck!==0){
-            if (tripcheck.availableSeats>0){
-                 console.log(`\n-----------------------------------\npour le trajet de ${tripcheck.departure} -> ${tripcheck.destination} il rest : ${tripcheck.availableSeats} place\n`)
-                do{               
-                console.log("1. Acheter un billet")
-                console.log("2. Acheter plusieur billets")
-                console.log("0. Retourner au menu principal")
-                x = Number(prompt("votre choix :  "))
+    for (let i=0;i<name_fillter.length;i++){
+       for(let j=0;j<alpha.length;j++){
+         if(name_fillter[i]===alpha[j]){
+            filter_check++
 
-            
+
+        }
+       }
+
+    }
+        if (filter_check===name_fillter.length){
+            let tripid=prompt("Identifiant du trajet :").trim()
+            for (let i=0;i<tripid.length;i++){
+                for (let j=0;j<tripid.length;j++){
+                    if(tripid[i]===nums[j]){
+                    filter_id++
+                }
+            }
+            }
+            tripid=Number(tripid);
+            if (filter_id===tripid.length){
                 
+                const tripcheck=trips.find(trip => trip.id ===tripid);//this also alow yoou to get the trip that has the same id that the user gives"tripid"
+                if (tripcheck!==0){
+                    if (tripcheck.availableSeats>0){
+                        console.log(`\n-----------------------------------\npour le trajet de ${tripcheck.departure} -> ${tripcheck.destination} il rest : ${tripcheck.availableSeats} place\n`)
+                        do{               
+                        console.log("1. Acheter un billet")
+                        console.log("2. Acheter plusieur billets")
+                        console.log("0. Retourner au menu principal")
+                        x = Number(prompt("votre choix :  "))
 
-                switch (x) {
-                    case 1 :
                     
-                        ticket_count++;
-                        tickets.push({
-                            id: ticket_count,
-                            passengerName: name,
-                            tripId: tripid,
-                            seatNumber: (50-tripcheck.availableSeats+1),
-                            price: `${tripcheck.price}DH`
-                        })
-                        trips[(tripid-1)].availableSeats-=1
-                        console.log(`Ticket acheté avec succès.\n Ticket #${tickets.length+1}\nPassager : ${name}\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\nPlace : ${50-tripcheck.availableSeats}\nPrix : ${tripcheck.price}DH`)
                         
-                        break;
-                    case  2:
-                        x= Number (prompt("combien de ticket:  "))
-                            if(x<tripcheck.availableSeats+1&&x>0){
-                               for(i=0;i<x;i++){
-                                    ticket_count++
+
+                        switch (x) {
+                            case 1 :
+                            
+                                ticket_count++;
                                 tickets.push({
                                     id: ticket_count,
                                     passengerName: name,
                                     tripId: tripid,
                                     seatNumber: (50-tripcheck.availableSeats+1),
-                                    price: tripcheck.price
-                                    
+                                    price: `${tripcheck.price}DH`
                                 })
                                 trips[(tripid-1)].availableSeats-=1
-                                console.log(`+++++++++++++++++++++++++\nTicket acheté avec succès.\n+++++++++++++++++++++++++\nTicket #${tickets.length}\n--------------------\nPassager : ${name}\n--------------------\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\n--------------------\nPlace : ${50-tripcheck.availableSeats}\n--------------------\nPrix : ${tripcheck.price}DH\n--------------------\n`)
+                                console.log(`Ticket acheté avec succès.\n Ticket #${tickets.length+1}\nPassager : ${name}\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\nPlace : ${50-tripcheck.availableSeats}\nPrix : ${tripcheck.price}DH`)
+                                
+                                break;
+                            case  2:
+                                x= Number (prompt("combien de ticket:  "))
+                                    if(x<tripcheck.availableSeats+1&&x>0){
+                                    for(i=0;i<x;i++){
+                                            ticket_count++
+                                        tickets.push({
+                                            id: ticket_count,
+                                            passengerName: name,
+                                            tripId: tripid,
+                                            seatNumber: (50-tripcheck.availableSeats+1),
+                                            price: tripcheck.price
+                                            
+                                        })
+                                        trips[(tripid-1)].availableSeats-=1
+                                        console.log(`+++++++++++++++++++++++++\nTicket acheté avec succès.\n+++++++++++++++++++++++++\nTicket #${tickets.length}\n--------------------\nPassager : ${name}\n--------------------\nTrajet : ${tripcheck.departure} → ${tripcheck.destination}\n--------------------\nPlace : ${50-tripcheck.availableSeats}\n--------------------\nPrix : ${tripcheck.price}DH\n--------------------\n`)
 
-                               }
+                                    }
 
-                            }else {console.log("Cela dépasse ce qui est disponible.")}
-                            
-                           
-                            
-                        break;
-                    case 0 :
-                        break;
-                    default:
-                        console.log("votre choix n'exist pas !")
-                        break;
+                                    }else {console.log("Cela dépasse ce qui est disponible.")}
+                                    
+                                
+                                    
+                                break;
+                            case 0 :
+                                break;
+                            default:
+                                console.log("votre choix n'exist pas !")
+                                break;
 
 
-                }
-                
-             
-                
-                }while(x!==0)
-                
-            }else console.log("train complet")
-        }else{ console.log("se trajet n'existe pas");
-        prompt('Appuyez sur Entrée pour revenir au menu principal.');}
+                        }
+                        
+                    
+                        
+                        }while(x!==0)
+                        
+                    }else console.log("train complet")
+                }else{ console.log("se trajet n'existe pas");
+                    
+                    prompt('Appuyez sur Entrée pour revenir au menu principal.');}
+            }else {console.log("ce id est unvalid")
+                prompt('Appuyez sur Entrée pour revenir au menu principal.');}
+            
+
+        }else {console.log("ce nom est unvalide")}
 
     
     
@@ -495,7 +532,9 @@ function filtering_tickets(){
 function trajet_sorting(){
     let sorting_trips =[...trips];
 for (let i=0;i<sorting_trips.length-1;i++){
+
     for(let j=0;j<sorting_trips.length-i-1;j++){
+
         if(sorting_trips[j].price>sorting_trips[j+1].price) {
             let temp=sorting_trips[j]
             sorting_trips[j]=sorting_trips[j+1]
