@@ -1,3 +1,5 @@
+const { useDeferredValue } = require("react");
+
 const trips = [
     {
         id: 1,
@@ -207,6 +209,7 @@ function main() {
         console.log("5. Rechercher un ticket")
         console.log("6. Filtrer les trajets")
         console.log("7. Trier les trajets")
+        console.log("8. statistiques")
         console.log("0. Quitter")
         console.log("")
     
@@ -239,6 +242,9 @@ function main() {
             break;
             case 7: 
                 trajet_sorting()
+            break;
+            case 8:
+                Revenue()
             break;
             case 0:
                 console.log("END");
@@ -581,15 +587,40 @@ for (let i=0;i<sorting_trips.length-1;i++){
 
 
 function statistique(){
+    console.log("======LES STATISTIQUES======")
+    console.log("1.total tickets vendus")
+    console.log("2.Chiffre d'affaires")
+    console.log("3.Trajet le plus vendu")
+    console.log("0.Retour au menu principal")
+    const choix=Number(prompt("votre choix: "))
+    switch (choix){
+        case 1:
+            selled_tickets()
+        break;
+        case 2:
+            Revenue()
+        break;
+        case 3:
+
+        break;
+        case 0:
+            prompt("press entrer pour Retour au menu principal")
+        break;
+        default:
+        break;
 
 
+    }
 
 }
 
 
 // Nombre total de tickets vendus
 function selled_tickets(){
-
+console.log("total des tickets vendus")
+if (tickets.length>0){
+    console.log (tickets.legth)
+}else console.log("Aucun ticket n'a encore été vendu.")
 
 
 }
@@ -608,12 +639,13 @@ function Revenue(){
     }else{console.log("Il n'y a pas encore de revenus.")}
 
 
-
 }
 
 
 // Trajet le plus vendu
 function most_used_trajet(){
+
+
 
 
 
