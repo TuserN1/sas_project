@@ -553,7 +553,7 @@ for (let i=0;i<sorting_trips.length-1;i++){
 }
 
         console.log("1.Trier par ordre croissant")
-        console.log("2.Trier par ordre croissant")
+        console.log("2.Trier par ordre décroissant")
         console.log("0.revenir au menu principal.")
         const x=Number(prompt("Votre choix : "))
         switch (x){
@@ -588,7 +588,6 @@ function statistique(){
     console.log("======LES STATISTIQUES======")
     console.log("1.total tickets vendus")
     console.log("2.Chiffre d'affaires")
-    console.log("3.Trajet le plus vendu")
     console.log("0.Retour au menu principal")
     const choix=Number(prompt("votre choix: "))
     switch (choix){
@@ -598,13 +597,11 @@ function statistique(){
         case 2:
             Revenue()
         break;
-        case 3:
-            most_used_trajet()
-        break;
         case 0:
             prompt("press entrer pour Retour au menu principal")
         break;
         default:
+            console.log("votre choix est incorrect")
         break;
 
 
@@ -639,42 +636,3 @@ function Revenue(){
 
 }
 
-
-// Trajet le plus vendu
-function most_used_trajet(){
-    
-    let max=0;
-    let repeated=[];
-
-    for (let i=1 ;i<tickets.length;i++){
-        let count=0
-        if(tickets[i].tripid!==tickets[i-1].tripid){
-
-            for(let j=0;j<tickets.length;j++){
-                if(tickets[i].tripid===tickets[j].tripid){
-                    count++
-
-
-                }
-
-
-
-            }
-            if (count>max){
-                max=count
-                repeated.push(tickets[i])
-            }
-        }
-
-
-
-
-    }
-    return console.log(repeated)
-    console.log("Trajet le plus vendu :\n"
-    ,trips[repeated.tripid-1].departure ,"-->",trips[repeated.tripid-1].destination,"\n",max)
-
-
-
-
-}
