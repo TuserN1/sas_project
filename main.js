@@ -276,15 +276,7 @@ function show_trips(){
 
 // buy tickets
 function buy_teckets(){
-    let ticket={
-    id: 0,
-    passengerName:"",
-    tripId: 0,
-    seatNumber: 0,
-    price:0
-}
-
-
+   
     let x;
     let name =prompt("Nom du passager : ")
     let name_fillter=name.toLowerCase().trim();
@@ -444,7 +436,7 @@ function cancel_ticket(){
 
                 }
 
-                console.log(ticket)
+                
             }
             tik_indx=tickets.findIndex(indx =>indx.id===x)
             console.log(tik_indx)
@@ -452,7 +444,7 @@ function cancel_ticket(){
                 trips[ticket.tripId-1].availableSeats+=+1;
                 tickets.splice(tik_indx,1)
                 console.log("Ticket annulé avec succès.")
-                console.log(tickets)
+                
 
                 
 
@@ -634,5 +626,6 @@ function Revenue(){
     }else{console.log("Il n'y a pas encore de revenus.")}
 
 
+    
 }
 
